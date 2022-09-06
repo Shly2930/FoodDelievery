@@ -9,8 +9,10 @@ class SmallRoundButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.black87)),
+      style: ElevatedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          primary: Colors.black87),
       child: Text(
         title,
       ),

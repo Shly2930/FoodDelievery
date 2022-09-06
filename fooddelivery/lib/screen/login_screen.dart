@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddelivery/component/app_main_button.dart';
 import 'package:fooddelivery/component/small_round_button.dart';
 
 import 'package:fooddelivery/utilities/app_images.dart';
@@ -26,8 +27,7 @@ class LoginPage extends StatelessWidget {
                       })),
             ],
           ),
-          Expanded(
-              child: Container(
+          Container(
             color: Colors.white,
             child: Column(children: [
               Padding(
@@ -80,7 +80,29 @@ class LoginPage extends StatelessWidget {
                 ],
               )
             ]),
-          ))
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 30, right: 30),
+            child: TextFormField(
+              decoration: InputDecoration(
+                  labelText: 'Enter mobile number',
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(10))),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 30, right: 30),
+            child: AppMainButton(title: 'Continue', onPressed: () {}),
+          )
         ],
       ),
     );
