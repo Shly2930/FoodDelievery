@@ -1,0 +1,109 @@
+{
+	"restaurants": [
+	  {
+		"name": "Costa Coffee",
+		"type": "Coffee, Sandwich, Fastfood",
+		"rating": 4.0,
+		"budgetHint":"₹150 for 2",
+		"distance": "34 mins | 14 km",
+		"image": "https://media-cdn.tripadvisor.com/media/photo-p/15/3d/8f/9c/photo0jpg.jpg",
+		"restaurantID": "1",
+		"menu": [
+		  {
+			"item_name": "Cappuccino",
+			"price": 235,
+			"description": "Our signature Espresso",
+			"item_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"
+		  },
+		  {
+			"item_name": "Iced Latte",
+			"price": 245,
+			"description": "Chilled Milk",
+			"item_url": "https://www.baristainstitute.com/sites/default/files/styles/2x_big_header_image/public/images/Tazza_Ice_Latte.jpg"
+		  },
+		  {
+			"item_name": "Flat White",
+			"price": 280,
+			"description": "Our signature Espresso",
+			"item_url": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/flat-white-d8ada0f.jpg"
+		  },
+		  {
+			"item_name": "Classic Frappe",
+			"price": 255,
+			"description": "Chilled Milk",
+			"item_url": "https://laboratorioespresso.it/wp-content/uploads/2018/06/Frappe-710x473.jpg"
+		  }
+		]
+	  },
+	  {
+		"name": "Pizza Factory",
+		"type": "Coffee, Sandwich, Fastfood",
+		"rating": 3.2,
+		"budgetHint":"₹250 for 2",
+		"distance": "34 mins | 14 km",
+		"image": "https://static.toiimg.com/photo/msid-87930581/87930581.jpg",
+		"restaurantID": "2",
+		"menu": [
+		  {
+			"item_name": "Cheese & Corn Pizza",
+			"price": 157,
+			"description": "Our signature Espresso",
+			"item_url": "https://cdn.shopify.com/s/files/1/0235/7064/5069/products/tpc3_640x.png"
+		  },
+		  {
+			"item_name": "Veggie Overload Pizza ",
+			"price": 205,
+			"description": "Chilled Milk",
+			"item_url": "https://cdn.shopify.com/s/files/1/0235/7064/5069/products/tpc3_640x.png"
+		  },
+		  {
+			"item_name": "Tandoori Pizza",
+			"price": 180,
+			"description": "Our signature Espresso",
+			"item_url": "https://cdn.shopify.com/s/files/1/0235/7064/5069/products/tpc3_640x.png"
+		  },
+		  {
+			"item_name": "Farmer Pizza",
+			"price": 255,
+			"description": "Chilled Milk",
+			"item_url": "https://cdn.shopify.com/s/files/1/0235/7064/5069/products/tpc3_640x.png"
+		  }
+		]
+	  },
+	  {
+		"name": "Burger Singh - Big Punjabi Burgers",
+		"type": "Burger, American, Street Food",
+		"rating": 4.0,
+		"budgetHint":"₹200 for 2",
+		"distance": "35 mins | 1 km",
+		"image": "https://c.ndtvimg.com/2022-06/gp4k2jro_burgers_625x300_20_June_22.jpg",
+		"restaurantID": "1",
+		"menu": [
+		  {
+			"item_name": "Regular fries",
+			"price": 235,
+			"description": "Our signature Espresso",
+			"item_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"
+		  },
+		  {
+			"item_name": "Iced Latte",
+			"price": 245,
+			"description": "Chilled Milk",
+			"item_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"
+		  },
+		  {
+			"item_name": "Flat White",
+			"price": 280,
+			"description": "Our signature Espresso",
+			"item_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"
+		  },
+		  {
+			"item_name": "Classic Frappe",
+			"price": 255,
+			"description": "Chilled Milk",
+			"item_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG"
+		  }
+		]
+	  }
+	]
+  }
