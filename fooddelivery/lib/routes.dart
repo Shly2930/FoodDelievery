@@ -15,7 +15,6 @@ class Routes {
       case "homePage":
         return MaterialPageRoute(builder: (context) => HomePage());
       case "detailPage":
-       
         Restaurant restro = settings.arguments as Restaurant;
         return MaterialPageRoute(
             builder: (context) => DetailPage(restaurant: restro));
