@@ -15,7 +15,7 @@ class AppMainButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
-              primary: Colors.red.shade400),
+              backgroundColor: Colors.red.shade400),
           child: Text(title)),
     );
   }

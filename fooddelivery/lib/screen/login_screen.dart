@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fooddelivery/bloc/app_theme_bloc.dart';
 import 'package:fooddelivery/component/app_main_button.dart';
 import 'package:fooddelivery/component/small_round_button.dart';
 
 import 'package:fooddelivery/utilities/app_images.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-
   @override
   Widget build(BuildContext context) {
+    ThemeCubit theme = BlocProvider.of<ThemeCubit>(context, listen: true);
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         children: [
           Expanded(
@@ -31,7 +33,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  color: Colors.white,
+                  color: theme.isDark ? Colors.blue : Colors.white,
                   child: Column(children: [
                     Padding(
                       padding:
@@ -109,7 +111,24 @@ class LoginPage extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 30, right: 30),
                     child: Container(
                         child: AppMainButton(
-                            title: 'Continue', onPressed: () {}))),
+                            title: 'Continue',
+                            onPressed: () {
+                              
+                              Navigator.pushNamed(context, "/homePage");
+                            }))),
+                Padding(
+                  padding: const EdgeInsets.only(left: 130, right: 130),
+                  child: Row(
+                    children: [
+                      Text('Switch Theme'),
+                      Switch(
+                          value: theme.isDark,
+                          onChanged: ((val) {
+                            theme.changeTheme();
+                          }))
+                    ],
+                  ),
+                )
               ],
             ),
           ),

@@ -20,7 +20,7 @@ class Restaurant {
     required this.image,
     required this.restaurantId,
     required this.budgetHint,
-    required this.menu,
+    required this.menus,
   });
 
   String name;
@@ -30,7 +30,7 @@ class Restaurant {
   String image;
   String restaurantId;
   String budgetHint;
-  List<Menu> menu;
+  List<Menu> menus;
 
   factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
         name: json["name"],
@@ -40,7 +40,7 @@ class Restaurant {
         image: json["image"],
         restaurantId: json["restaurantID"],
         budgetHint: json["budgetHint"],
-        menu: List<Menu>.from(json["menu"].map((x) => Menu.fromJson(x))),
+        menus: List<Menu>.from(json["menu"].map((x) => Menu.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -51,6 +51,6 @@ class Restaurant {
         "image": image,
         "restaurantID": restaurantId,
         "budgetHint": budgetHint,
-        "menu": List<dynamic>.from(menu.map((x) => x.toJson())),
+        "menu": List<dynamic>.from(menus.map((x) => x.toJson())),
       };
 }

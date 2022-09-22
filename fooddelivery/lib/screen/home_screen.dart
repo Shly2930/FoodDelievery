@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fooddelivery/bloc/app_theme_bloc.dart';
 import 'package:fooddelivery/model/restaurant.dart';
 import 'package:fooddelivery/screen/detail_screen.dart';
 
@@ -55,6 +57,7 @@ class RestroCard extends StatelessWidget {
   final Restaurant restaurant;
   @override
   Widget build(BuildContext context) {
+    ThemeCubit theme = BlocProvider.of<ThemeCubit>(context, listen: true);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -63,7 +66,7 @@ class RestroCard extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: theme.isDark ? Colors.blue : Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Column(
             children: [

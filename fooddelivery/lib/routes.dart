@@ -12,7 +12,7 @@ class Routes {
         return MaterialPageRoute(builder: (context) => LoginPage());
       case "signupPage":
         return MaterialPageRoute(builder: (context) => SignupPage());
-      case "homePage":
+      case "/homePage":
         return MaterialPageRoute(builder: (context) => HomePage());
       case "detailPage":
         Restaurant restro = settings.arguments as Restaurant;
