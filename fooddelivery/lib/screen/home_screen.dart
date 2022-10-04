@@ -150,4 +150,5 @@ class RatingView extends StatelessWidget {
       ]),
     );
   }
+  
 }

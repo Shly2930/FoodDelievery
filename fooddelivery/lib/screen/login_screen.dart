@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fooddelivery/bloc/app_theme_bloc.dart';
 import 'package:fooddelivery/component/app_main_button.dart';
 import 'package:fooddelivery/component/small_round_button.dart';
+import 'package:fooddelivery/main.dart';
 
 import 'package:fooddelivery/utilities/app_images.dart';
 
@@ -113,7 +114,6 @@ class LoginPage extends StatelessWidget {
                         child: AppMainButton(
                             title: 'Continue',
                             onPressed: () {
-                              
                               Navigator.pushNamed(context, "/homePage");
                             }))),
                 Padding(
