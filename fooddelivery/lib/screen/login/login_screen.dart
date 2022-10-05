@@ -5,6 +5,9 @@ import 'package:fooddelivery/bloc/app_theme_bloc.dart';
 import 'package:fooddelivery/component/app_main_button.dart';
 import 'package:fooddelivery/component/small_round_button.dart';
 import 'package:fooddelivery/main.dart';
+import 'package:fooddelivery/screen/login/login_bloc/login_bloc.dart';
+import 'package:fooddelivery/screen/login/login_bloc/login_event.dart';
+import 'package:fooddelivery/screen/login/login_bloc/login_state.dart';
 
 import 'package:fooddelivery/utilities/app_images.dart';
 
@@ -22,7 +25,7 @@ class LoginPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.9,
+            height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
                 Expanded(
@@ -105,21 +108,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 30, right: 30),
-                        child: TextFormField(
-                          cursorColor: Colors.red.shade400,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter(RegExp("[0-9]"),
-                                allow: true),
-                          ],
-                          decoration: InputDecoration(
-                              hintText: 'Enter mobile number',
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(10))),
-                        ),
+                        child: phoneNumberField(context),
                       ),
                       SizedBox(
                         height: 20,
@@ -196,6 +185,27 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget phoneNumberField(BuildContext context) {
+    return BlocBuilder<LoginBloc, LoginState>(
+      builder: (context, state) {
+        return TextFormField(
+          cursorColor: Colors.red.shade400,
+          keyboardType: TextInputType.number,
+          inputFormatters: [
+            FilteringTextInputFormatter(RegExp("[0-9]"), allow: true),
+          ],
+          decoration: InputDecoration(
+              hintText: 'Enter mobile number',
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(10))),
+        );
+      },
     );
   }
 }
