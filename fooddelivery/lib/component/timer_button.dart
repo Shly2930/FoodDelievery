@@ -10,14 +10,14 @@ class TimerButton extends StatelessWidget {
     return OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: Colors.grey, width: 2.0),
+            side: BorderSide(color: Colors.grey.shade500, width: 1.5),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             backgroundColor: Colors.white),
         child: Text(
           title,
           style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.bold, color: Colors.grey),
+              fontSize: 14, fontWeight: FontWeight.bold, color: Colors.grey),
         ));
   }
 }

@@ -17,18 +17,42 @@ class OtpPage extends StatefulWidget {
 
 class _OtpPageState extends State<OtpPage> {
   Timer? smsTimer;
+  Timer? callTimer;
 
   int maxSMSSeconds = 20;
+  int maxCallSeconds = 20;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    smsTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+
+    startSMSTimer();
+    startCallTimer();
+  }
+
+  void startSMSTimer() {
+    smsTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         maxSMSSeconds = maxSMSSeconds - 1;
       });
     });
+  }
+
+  void startCallTimer() {
+    callTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        maxCallSeconds = maxCallSeconds - 1;
+      });
+    });
+  }
+
+  void stopSMSTimer() {
+    smsTimer?.cancel();
+  }
+
+  void stopCallTimer() {
+    callTimer?.cancel();
   }
 
   @override
@@ -86,7 +110,7 @@ class _OtpPageState extends State<OtpPage> {
                 width: 150,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30),
+                padding: const EdgeInsets.only(left: 15, right: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -94,16 +118,19 @@ class _OtpPageState extends State<OtpPage> {
                       child: TimerButton(
                           title: 'Resend SMS in ${maxSMSSeconds.toString()}',
                           onPressed: () {
+                            print("Resend SMS Clicked");
                             // Navigator.pushNamed(context, "/homePage");
                           }),
                     ),
                     SizedBox(
-                      width: 20,
+                      width: 15,
                     ),
                     Expanded(
                       child: TimerButton(
-                          title: 'Call me',
+                          title: 'Call me in ${maxCallSeconds.toString()}',
                           onPressed: () {
+                            print("Resend call Clicked");
+
                             // Navigator.pushNamed(context, "/homePage");
                           }),
                     ),
