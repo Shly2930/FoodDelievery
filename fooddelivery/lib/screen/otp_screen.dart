@@ -34,6 +34,10 @@ class _OtpPageState extends State<OtpPage> {
   void startSMSTimer() {
     smsTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
+        if (maxSMSSeconds == 0) {
+          stopSMSTimer();
+          return;
+        }
         maxSMSSeconds = maxSMSSeconds - 1;
       });
     });
@@ -116,11 +120,15 @@ class _OtpPageState extends State<OtpPage> {
                   children: [
                     Expanded(
                       child: TimerButton(
-                          title: 'Resend SMS in ${maxSMSSeconds.toString()}',
-                          onPressed: () {
-                            print("Resend SMS Clicked");
-                            // Navigator.pushNamed(context, "/homePage");
-                          }),
+                        title: maxSMSSeconds == 0
+                            ? "Resend SMS"
+                            : 'Resend SMS in ${maxSMSSeconds.toString()}',
+                        onPressed: () {
+                          print("Resend SMS Clicked");
+                          // Navigator.pushNamed(context, "/homePage");
+                        },
+                        enabled: maxSMSSeconds == 0 ? true : false,
+                      ),
                     ),
                     SizedBox(
                       width: 15,
