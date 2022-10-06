@@ -12,6 +12,8 @@ import 'package:fooddelivery/screen/login/login_bloc/login_state.dart';
 import 'package:fooddelivery/utilities/app_images.dart';
 
 class LoginPage extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     ThemeCubit theme = BlocProvider.of<ThemeCubit>(context, listen: true);
@@ -119,7 +121,13 @@ class LoginPage extends StatelessWidget {
                               child: AppMainButton(
                                   title: 'Continue',
                                   onPressed: () {
-                                    Navigator.pushNamed(context, "/homePage");
+                                    Navigator.pushNamed(context, "otpPage",
+                                        arguments: {"phone": "", "otp": ""});
+                                    if (_formKey.currentState!.validate()) {
+                                      //   context
+                                      //       .read<LoginBloc>()
+                                      //       .add(LoginSubmitted());
+                                    }
                                   }))),
                       Padding(
                         padding: const EdgeInsets.only(left: 130, right: 130),
@@ -192,17 +200,26 @@ class LoginPage extends StatelessWidget {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         return TextFormField(
+          validator: (value) =>
+              state.isValidPhoneNum ? null : "Not a valid number",
+          onChanged: (value) => context
+              .read<LoginBloc>()
+              .add(PhoneNumberChanged(phoneNumber: value)),
           cursorColor: Colors.red.shade400,
+          maxLength: 10,
           keyboardType: TextInputType.number,
           inputFormatters: [
             FilteringTextInputFormatter(RegExp("[0-9]"), allow: true),
           ],
           decoration: InputDecoration(
+              counterText: "",
               hintText: 'Enter mobile number',
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.grey, width: 2.0),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    width: 1,
-                  ),
+                  borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                   borderRadius: BorderRadius.circular(10))),
         );
       },

@@ -11,7 +11,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Future<void> _onLoginButtonPressed(
-      LoginSubmitted event, Emitter<LoginState> emit) async {}
+      LoginSubmitted event, Emitter<LoginState> emit) async {
+        // 
+        
+      }
 
   void _onPhoneNumChanged(PhoneNumberChanged event, Emitter<LoginState> emit) {
     final phone = event.phoneNumber;

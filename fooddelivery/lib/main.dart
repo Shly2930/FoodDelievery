@@ -49,6 +49,7 @@ abstract class AppTheme {
         textTheme: ThemeData.dark().textTheme.copyWith(
               bodyText1: const TextStyle(
                 fontSize: 25,
+                
                 color: Colors.white,
               ),
               caption: const TextStyle(

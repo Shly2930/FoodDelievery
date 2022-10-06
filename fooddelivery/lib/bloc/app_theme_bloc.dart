@@ -15,16 +15,16 @@ enum ThemeType { Dark, Light }
 //   ThemeType? get value => values[this];
 // }
 
-ThemeCubit changeThemeCubit = ThemeCubit()..themeSetup();
+ThemeCubit changeThemeCubit = ThemeCubit()..initialThemeSetup();
 
 class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit() : super(ThemeInitial());
 
-  bool _isDarkTheme = false;
+  bool _isDarkTheme = true;
   bool get isDark => _isDarkTheme;
 
-  void themeSetup() async {
-    print("theme setup");
+  void initialThemeSetup() async {
+    // print("theme setup");
     _isDarkTheme = await getSavedThemeIsDark();
     emit(ThemeChanged());
   }
@@ -39,7 +39,7 @@ class ThemeCubit extends Cubit<ThemeState> {
 
   Future<void> saveDarkTheme(bool value) async {
     var preferences = await SharedPreferences.getInstance();
-    print("saved == ${value}");
+    // print("saved == ${value}");
     await preferences.setBool('theme_option', value);
   }
 
