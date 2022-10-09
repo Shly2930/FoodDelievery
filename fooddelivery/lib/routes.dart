@@ -18,8 +18,15 @@ class Routes {
                   child: LoginPage(),
                 ));
       case "otpPage":
-        // String phoneNum = settings.arguments as String;
-        return MaterialPageRoute(builder: (context) => OtpPage(phoneNum: "", otp: "",));
+        Map<String, dynamic> map = settings.arguments as Map<String, dynamic>;
+        String phone = map["phone"] as String;
+        String otp = map["otp"] as String;
+
+        return MaterialPageRoute(
+            builder: (context) => OtpPage(
+                  phoneNum: phone,
+                  otp: otp,
+                ));
       case "signupPage":
         return MaterialPageRoute(builder: (context) => SignupPage());
       case "/homePage":

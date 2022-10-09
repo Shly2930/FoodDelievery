@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fooddelivery/component/timer_button.dart';
+import 'package:async/async.dart';
 
 import '../component/app_main_button.dart';
 
@@ -16,15 +17,17 @@ class OtpPage extends StatefulWidget {
 }
 
 class _OtpPageState extends State<OtpPage> {
-  Timer? smsTimer;
-  Timer? callTimer;
+  late Timer? smsTimer;
+  late Timer? callTimer;
 
-  int maxSMSSeconds = 20;
-  int maxCallSeconds = 20;
+  int maxSMSSeconds = 10;
+  int maxCallSeconds = 10;
+
+  bool showSMSMsg = false;
+  bool resendSMSButtonDisabled = true;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     startSMSTimer();
@@ -32,13 +35,15 @@ class _OtpPageState extends State<OtpPage> {
   }
 
   void startSMSTimer() {
+    resendSMSButtonDisabled = true;
     smsTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        if (maxSMSSeconds == 0) {
+        if (maxSMSSeconds > 0) {
+          maxSMSSeconds = maxSMSSeconds - 1;
+        } else {
           stopSMSTimer();
           return;
         }
-        maxSMSSeconds = maxSMSSeconds - 1;
       });
     });
   }
@@ -46,12 +51,18 @@ class _OtpPageState extends State<OtpPage> {
   void startCallTimer() {
     callTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        maxCallSeconds = maxCallSeconds - 1;
+        if (maxCallSeconds > 0) {
+          maxCallSeconds = maxCallSeconds - 1;
+        } else {
+          stopCallTimer();
+          return;
+        }
       });
     });
   }
 
   void stopSMSTimer() {
+    resendSMSButtonDisabled = false;
     smsTimer?.cancel();
   }
 
@@ -62,7 +73,7 @@ class _OtpPageState extends State<OtpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text('OTP Verification'),
       ),
@@ -81,7 +92,7 @@ class _OtpPageState extends State<OtpPage> {
                     fontSize: 20, height: 1.5, color: Colors.grey.shade900),
               ),
               Text(
-                "Phone Number",
+                this.widget.phoneNum,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
@@ -113,6 +124,11 @@ class _OtpPageState extends State<OtpPage> {
                 height: 20,
                 width: 150,
               ),
+              Text(showSMSMsg ? "new otp has sent" : ""),
+              SizedBox(
+                height: 20,
+                width: 150,
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15),
                 child: Row(
@@ -120,14 +136,20 @@ class _OtpPageState extends State<OtpPage> {
                   children: [
                     Expanded(
                       child: TimerButton(
-                        title: maxSMSSeconds == 0
-                            ? "Resend SMS"
-                            : 'Resend SMS in ${maxSMSSeconds.toString()}',
-                        onPressed: () {
-                          print("Resend SMS Clicked");
-                          // Navigator.pushNamed(context, "/homePage");
-                        },
-                        enabled: maxSMSSeconds == 0 ? true : false,
+                        title: maxSMSSeconds > 0
+                            ? 'Resend SMS in ${maxSMSSeconds.toString()}'
+                            : "Resend SMS",
+                        onPressed: resendSMSButtonDisabled
+                            ? null
+                            : () {
+                                setState(() {
+                                  maxSMSSeconds = 10;
+                                  startSMSTimer();
+                                });
+
+                                print("Resend SMS Clicked");
+                              },
+                        enabled: maxSMSSeconds > 0 ? false : true,
                       ),
                     ),
                     SizedBox(
@@ -135,12 +157,17 @@ class _OtpPageState extends State<OtpPage> {
                     ),
                     Expanded(
                       child: TimerButton(
-                          title: 'Call me in ${maxCallSeconds.toString()}',
-                          onPressed: () {
-                            print("Resend call Clicked");
-
-                            // Navigator.pushNamed(context, "/homePage");
-                          }),
+                        title: maxCallSeconds > 0
+                            ? 'Call me in ${maxCallSeconds.toString()}'
+                            : 'Call Back',
+                        onPressed: () {
+                          setState(() {
+                            maxCallSeconds = 10;
+                            startCallTimer();
+                          });
+                        },
+                        enabled: maxCallSeconds > 0 ? false : true,
+                      ),
                     ),
                   ],
                 ),

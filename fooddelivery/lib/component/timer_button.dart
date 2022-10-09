@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class TimerButton extends StatelessWidget {
   final String title;
-  final Function() onPressed;
+  final Function()? onPressed;
   bool enabled = false;
   TimerButton(
       {required this.title, required this.onPressed, this.enabled = false});

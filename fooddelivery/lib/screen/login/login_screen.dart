@@ -122,7 +122,10 @@ class LoginPage extends StatelessWidget {
                                   title: 'Continue',
                                   onPressed: () {
                                     Navigator.pushNamed(context, "otpPage",
-                                        arguments: {"phone": "", "otp": ""});
+                                        arguments: {
+                                          "phone": "9876543210",
+                                          "otp": ""
+                                        });
                                     if (_formKey.currentState!.validate()) {
                                       //   context
                                       //       .read<LoginBloc>()
@@ -130,10 +133,10 @@ class LoginPage extends StatelessWidget {
                                     }
                                   }))),
                       Padding(
-                        padding: const EdgeInsets.only(left: 130, right: 130),
+                        padding: const EdgeInsets.only(left: 100, right: 100),
                         child: Row(
                           children: [
-                            Text('Switch Theme'),
+                            Expanded(child: Text('Switch Theme')),
                             Switch(
                                 value: theme.isDark,
                                 onChanged: ((val) {
